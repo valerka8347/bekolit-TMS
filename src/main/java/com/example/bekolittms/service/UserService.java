@@ -1,13 +1,12 @@
 package com.example.bekolittms.service;
 
-import com.example.bekolittms.entity.Role;
-import com.example.bekolittms.entity.User;
+import com.example.bekolittms.entity.RoleEntity;
+import com.example.bekolittms.entity.UserEntity;
 import com.example.bekolittms.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import java.util.HashSet;
 
@@ -17,9 +16,9 @@ public class UserService implements UserDetailsService {
     @Autowired
     private UserRepository userRepository;
 
-    public void save(User user) {
-        HashSet<Role> roles = new HashSet<>();
-        roles.add(Role.USER);
+    public void save(UserEntity user) {
+        HashSet<RoleEntity> roles = new HashSet<>();
+        roles.add(RoleEntity.USER);
         user.setRoles(roles);
         userRepository.save(user);
     }

@@ -15,7 +15,7 @@ import java.util.Set;
 @NoArgsConstructor
 @Entity
 @Table(name = "users")
- public class User implements UserDetails {
+ public class UserEntity implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -25,10 +25,10 @@ import java.util.Set;
     private String password;
 
 
-    @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
+    @ElementCollection(targetClass = RoleEntity.class, fetch = FetchType.EAGER)
     @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))
     @Enumerated(EnumType.STRING)
-    private Set<Role> roles;
+    private Set<RoleEntity> roles;
 //    = new HashSet<>();
 
 
@@ -57,4 +57,39 @@ import java.util.Set;
         return true;
     }
 
+   public long getId() {
+      return id;
+   }
+
+   public UserEntity setId(long id) {
+      this.id = id;
+      return this;
+   }
+
+   public String getName() {
+      return name;
+   }
+
+   public UserEntity setName(String name) {
+      this.name = name;
+      return this;
+   }
+
+   public String getUsername() {
+      return username;
+   }
+
+   public UserEntity setUsername(String username) {
+      this.username = username;
+      return this;
+   }
+
+   public String getPassword() {
+      return password;
+   }
+
+   public UserEntity setPassword(String password) {
+      this.password = password;
+      return this;
+   }
 }

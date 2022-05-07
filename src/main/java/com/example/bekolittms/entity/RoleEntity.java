@@ -2,7 +2,7 @@ package com.example.bekolittms.entity;
 
 import org.springframework.security.core.GrantedAuthority;
 
-public enum Role implements GrantedAuthority {
+public enum RoleEntity implements GrantedAuthority {
     USER, ADMIN;
 
     @Override

@@ -1,8 +1,8 @@
 package com.example.bekolittms.repository;
 
-import com.example.bekolittms.entity.User;
+import com.example.bekolittms.entity.UserEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface UserRepository extends JpaRepository<User, Long> {
-    User findByUsername (String username);
+public interface UserRepository extends JpaRepository<UserEntity, Long> {
+    UserEntity findByUsername (String username);
 }

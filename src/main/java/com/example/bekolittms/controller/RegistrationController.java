@@ -1,7 +1,7 @@
 package com.example.bekolittms.controller;
 
-import com.example.bekolittms.entity.Role;
-import com.example.bekolittms.entity.User;
+import com.example.bekolittms.entity.RoleEntity;
+import com.example.bekolittms.entity.UserEntity;
 import com.example.bekolittms.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,13 +22,13 @@ public class RegistrationController {
     }
 
     @PostMapping("/reg")
-    public String addNewUser(User user, Model model) {
-        User userFromDb = userRepository.findByUsername(user.getUsername());
+    public String addNewUser(UserEntity user, Model model) {
+        UserEntity userFromDb = userRepository.findByUsername(user.getUsername());
         if(userFromDb != null){
             model.addAttribute("message", "User exist");
             return "reg";
         }
-        user.setRoles(Collections.singleton(Role.USER));
+        user.setRoles(Collections.singleton(RoleEntity.USER));
         userRepository.save(user);
 //        userService.save(user);
         return "redirect:/login";

@@ -8,9 +8,9 @@
 <body>
 <header th:insert="blocks/header :: header"></header>
     <form th:action="@{/reg}" method="post">
+        <input type="text" name="name" placeholder="Name">
         <input type="text" name="username" placeholder="Username">
         <input type="password" name="password" placeholder="Password">
-        <input type="text" name="name" placeholder="Name">
         <button type="submit">Зарегестрироваться</button>
     </form>
 <div th:insert="blocks/footer :: footer"></div>
