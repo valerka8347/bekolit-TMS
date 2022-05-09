@@ -1,10 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Список пользователей</title>
 </head>
 <body>
-<h1>asldgja;lrkj</h1>
+<h2>Список пользователей</h2>
+<table>
+    <tr>
+        <th>username</th>
+        <th>password</th>
+    </tr>
+        <tr th:each="user: ${users}">
+            <!--/*@thymesVar id="userEntity" type="com.example.bekolittms.entity.UserEntity"*/-->
+            <td th:text="${userEntity.username}"></td>
+            <td th:text="${userEntity.password}"></td>
+            <td th:text="${userEntity.getRoles()}"></td>
+
+        </tr>
+</table>
 </body>
 </html>

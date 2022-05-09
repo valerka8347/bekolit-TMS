@@ -1,5 +1,6 @@
 package com.example.bekolittms.controller;
 
+import com.example.bekolittms.converter.UserLoginToUserEntityConverter;
 import com.example.bekolittms.entity.RoleEntity;
 import com.example.bekolittms.entity.UserEntity;
 import com.example.bekolittms.repository.UserRepository;
@@ -23,11 +24,11 @@ public class RegistrationController {
 
     @PostMapping("/reg")
     public String addNewUser(UserEntity user, Model model) {
-        UserEntity userFromDb = userRepository.findByUsername(user.getUsername());
-        if(userFromDb != null){
-            model.addAttribute("message", "User exist");
-            return "reg";
-        }
+//        UserEntity userFromDb = userRepository.findByUsername(user.getUsername());
+//        if(userFromDb != null){
+//            model.addAttribute("message", "User exist");
+//            return "reg";
+//        }
         user.setRoles(Collections.singleton(RoleEntity.USER));
         userRepository.save(user);
 //        userService.save(user);
@@ -38,8 +39,13 @@ public class RegistrationController {
     public String login() {
         return "login";
     }
+
     @PostMapping("/login")
     public String homeWork(){
-        return "redirect:/home";
+        return "/home";
+    }
+    @GetMapping("/logout")
+    public String logout(){
+        return "home";
     }
 }

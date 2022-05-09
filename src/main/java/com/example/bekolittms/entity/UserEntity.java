@@ -24,7 +24,6 @@ import java.util.Set;
     private String username;
     private String password;
 
-
     @ElementCollection(targetClass = RoleEntity.class, fetch = FetchType.EAGER)
     @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))
     @Enumerated(EnumType.STRING)
