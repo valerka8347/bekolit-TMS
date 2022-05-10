@@ -21,7 +21,6 @@ public class UserService implements UserDetailsService {
         roles.add(RoleEntity.USER);
         user.setRoles(roles);
         userRepository.save(user);
-        userRepository.deleteAll();
     }
 
 

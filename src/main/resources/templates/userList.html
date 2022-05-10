@@ -6,18 +6,18 @@
 </head>
 <body>
 <h2>Список пользователей</h2>
-<table>
-    <tr>
-        <th>username</th>
-        <th>password</th>
-    </tr>
-        <tr th:each="user: ${users}">
-            <!--/*@thymesVar id="userEntity" type="com.example.bekolittms.entity.UserEntity"*/-->
-            <td th:text="${userEntity.username}"></td>
-            <td th:text="${userEntity.password}"></td>
-            <td th:text="${userEntity.getRoles()}"></td>
+<div th:unless="${#lists.isEmpty(users)}" class="blockList" >
+    <table>
+        <thead>
+            <tr th:each="user: ${users}">
+                <td th:text="${user.username}"></td>
+                <td th:text="${user.getRoles()}"></td>
+                <td><a href="/user/${user.id}">изменить</a></td>
+            </tr>
+        </thead>
+    </table>
 
-        </tr>
+</div>
 </table>
 </body>
 </html>

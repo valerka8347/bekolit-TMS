@@ -4,6 +4,7 @@ import com.example.bekolittms.converter.UserLoginToUserEntityConverter;
 import com.example.bekolittms.entity.RoleEntity;
 import com.example.bekolittms.entity.UserEntity;
 import com.example.bekolittms.repository.UserRepository;
+import com.example.bekolittms.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,6 +17,8 @@ import java.util.Collections;
 public class RegistrationController {
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private UserService userService;
 
     @GetMapping("/reg")
     public String reg() {
@@ -30,8 +33,8 @@ public class RegistrationController {
 //            return "reg";
 //        }
         user.setRoles(Collections.singleton(RoleEntity.USER));
-        userRepository.save(user);
-//        userService.save(user);
+//        userRepository.save(user);
+        userService.save(user);
         return "redirect:/login";
     }
 
@@ -40,12 +43,4 @@ public class RegistrationController {
         return "login";
     }
 
-    @PostMapping("/login")
-    public String homeWork(){
-        return "/home";
-    }
-    @GetMapping("/logout")
-    public String logout(){
-        return "home";
-    }
 }

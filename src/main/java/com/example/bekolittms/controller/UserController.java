@@ -21,6 +21,11 @@ public class UserController {
     public String userList(Model model){
     model.addAttribute("users", userRepository.findAll());
         return "userList";
+    }
+    @GetMapping("{user}")
+    public String userEditForm(@PathVariable UserEntity userEntity, Model model){
+        model.addAttribute("user", userEntity);
+        return "userEdit";
 
     }
 
