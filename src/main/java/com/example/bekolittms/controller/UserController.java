@@ -1,5 +1,6 @@
 package com.example.bekolittms.controller;
 
+import com.example.bekolittms.entity.RoleEntity;
 import com.example.bekolittms.entity.UserEntity;
 import com.example.bekolittms.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,8 +24,9 @@ public class UserController {
         return "userList";
     }
     @GetMapping("{user}")
-    public String userEditForm(@PathVariable UserEntity userEntity, Model model){
-        model.addAttribute("user", userEntity);
+    public String userEditForm(@PathVariable UserEntity user, Model model){
+        model.addAttribute("user", user);
+        model.addAttribute("roles", RoleEntity.values());
         return "userEdit";
 
     }

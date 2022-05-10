@@ -12,12 +12,11 @@
             <tr th:each="user: ${users}">
                 <td th:text="${user.username}"></td>
                 <td th:text="${user.getRoles()}"></td>
-                <td><a href="/user/${user.id}">изменить</a></td>
+                <td><a href="/user/${id}">Изменить</a></td>
             </tr>
         </thead>
     </table>
 
 </div>
-</table>
 </body>
 </html>
