@@ -18,10 +18,15 @@
       <li><a href="/services">Services</a></li>
       <li><a href="/user">Users</a></li>
       <li>
-        <form th:action="@{/logout}" method="post">
+        <form th:action="@{/logout}" method="post" >
           <button class="waves-effect waves-light btn-small" type="submit">Logout</button>
         </form>
       </li>
+    </ul>
+    <ul class="right hide-on-med-and-down" style="margin-right: 10px" >
+      <form action="/login" method="post">
+        <button class="waves-effect waves-light btn-small" type="submit">Login</button>
+      </form>
     </ul>
   </div>
 </nav>

@@ -6,6 +6,8 @@ import com.example.bekolittms.model.UserEdit;
 import com.example.bekolittms.repository.UserRepository;
 import java.util.Optional;
 import javax.validation.Valid;
+
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/user")
+@PreAuthorize("hasAuthority('ADMIN')")
 public class UserController {
 
     final UserRepository userRepository;
