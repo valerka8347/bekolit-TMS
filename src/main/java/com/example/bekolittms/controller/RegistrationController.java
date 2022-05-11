@@ -15,10 +15,14 @@ import java.util.Collections;
 
 @Controller
 public class RegistrationController {
-    @Autowired
-    private UserRepository userRepository;
-    @Autowired
-    private UserService userService;
+
+    private final UserRepository userRepository;
+    private final UserService userService;
+
+    public RegistrationController(UserRepository userRepository, UserService userService) {
+        this.userRepository = userRepository;
+        this.userService = userService;
+    }
 
     @GetMapping("/reg")
     public String reg() {
@@ -27,11 +31,11 @@ public class RegistrationController {
 
     @PostMapping("/reg")
     public String addNewUser(UserEntity user, Model model) {
-//        UserEntity userFromDb = userRepository.findByUsername(user.getUsername());
-//        if(userFromDb != null){
-//            model.addAttribute("message", "User exist");
-//            return "reg";
-//        }
+        UserEntity userFromDb = userRepository.findByUsername(user.getUsername());
+        if(userFromDb != null){
+            model.addAttribute("message", "User exist");
+            return "reg";
+        }
         user.setRoles(Collections.singleton(RoleEntity.USER));
 //        userRepository.save(user);
         userService.save(user);

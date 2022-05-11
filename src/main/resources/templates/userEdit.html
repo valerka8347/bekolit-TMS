@@ -1,18 +1,47 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
-    <meta charset="UTF-8">
-    <title>Изменение параметров</title>
+  <th:block th:insert="~{fragments/template :: link}"></th:block>
 </head>
 <body>
-<form th:action="@{/user}" method="post">
-    <h1>hello Admin</h1>
-    <input type="text"  th:value = "${user}" name="username" >
-    <div th:unless="${#lists.isEmpty(user)}" class="blockList">
-      <label> <input type="checkbox" name="{role}" ${user.roles?seq_contains(role)?string("checked", "")}>${role}</label>
+<header>
+  <th:block th:insert="~{fragments/template :: navigation}"></th:block>
+</header>
+<main>
+  <div class="container" style="margin-top: 50px;">
+    <div>
+      <h5 class="center-align">Edit user</h5>
     </div>
-    <input type="hidden" value="${user.id}" name="userId">
-    <button type="submit">Сохранить</button>
-</form>
+
+    <form th:action="@{/user/edit}" th:object="${userEdit}" method="post">
+      <label for="username">Username</label>
+      <input type="text" name="username" id="username" th:value="${user != null} ? ${user.username} : ${userEdit.username}">
+
+        <p th:each="role: ${roles}">
+            <label>
+                <input type="checkbox" id="role" name="roles" th:checked="${#lists.contains(user.roles, role)}"
+                       th:value="${role}">
+                <span th:utext="${role}"></span>
+            </label>
+        </p>
+      <input type="hidden" name="id" th:value="${user.id}">
+      <button class="waves-effect waves-light btn" type="submit">Save</button>
+
+      <div th:if="${#fields.hasAnyErrors()}">
+        <ul>
+          <li style="color: #e53935" th:each="err : ${#fields.allErrors()}" th:text="${err}" />
+        </ul>
+      </div>
+
+    </form>
+
+
+
+  </div>
+</main>
+<th:block th:insert="~{fragments/template :: footer}"></th:block>
+<th:block th:insert="~{fragments/template :: script}"></th:block>
+
+
 </body>
 </html>

@@ -13,8 +13,11 @@ import java.util.HashSet;
 @Service
 public class UserService implements UserDetailsService {
 
-    @Autowired
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
+
+    public UserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     public void save(UserEntity user) {
         HashSet<RoleEntity> roles = new HashSet<>();
