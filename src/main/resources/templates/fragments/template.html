@@ -1,0 +1,59 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <title>TMS Company</title>
+  <!-- CSS  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link href="/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+</head>
+<body>
+<nav th:fragment="navigation" class="light-blue lighten-1" role="navigation">
+  <div class="nav-wrapper">
+    <a href="/" class="brand-logo" style="margin-left: 10px">TMS Logistics</a>
+    <ul id="nav-mobile" class="right hide-on-med-and-down" style="margin-right: 10px" sec:authorize="isAuthenticated()">
+      <li><a href="/services">Services</a></li>
+      <li><a href="/user">Users</a></li>
+      <li>
+        <form th:action="@{/logout}" method="post">
+          <button class="waves-effect waves-light btn-small" type="submit">Logout</button>
+        </form>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<footer th:fragment="footer" class="page-footer">
+  <div class="container">
+    <div class="row">
+      <div class="col l6 s12">
+        <h5 class="white-text">TMS Logistics</h5>
+        <p class="grey-text text-lighten-4">... delivers in all countries since 2022</p>
+      </div>
+      <div class="col l4 offset-l2 s12" sec:authorize="isAuthenticated()">
+
+        <h5 class="white-text">Links</h5>
+        <ul>
+          <li><a class="grey-text text-lighten-3" href="/services">Services</a></li>
+          <li><a class="grey-text text-lighten-3" href="/user">Users</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="footer-copyright">
+    <div class="container">
+      © 2022 Copyright TMS Logistics
+    </div>
+  </div>
+</footer>
+
+<!--  Scripts-->
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script src="/js/init.js"></script>
+
+</body>
+</html>
