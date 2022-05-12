@@ -1,0 +1,15 @@
+mai{
+    font: 12px/20px 'Verdana';
+    color: #535353;
+    display: block;
+    background: #F5F3F2;
+    border-radius: 15px;
+    padding: 30px;
+    margin-bottom: 20px;
+}
+h2, h3, h4 {margin:35px 0px 30px;text-align:left; color: #ff8300;}
+
+.listrong {
+    font-weight: bold;
+    color: #ff8300;
+}
