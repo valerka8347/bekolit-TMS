@@ -14,29 +14,20 @@
 <nav th:fragment="navigation" class="light-blue lighten-1" role="navigation">
   <div class="nav-wrapper">
     <a href="/" class="brand-logo" style="margin-left: 10px">TMS Logistics</a>
-    <ul id="nav-mobile" class="right hide-on-med-and-down" style="margin-right: 10px" sec:authorize="hasAuthority('ADMIN')">
-           <li><a href="/user">Users</a></li>
-    </ul>
-    <ul class="right hide-on-med-and-down" style="margin-right: 10px">
-      <li><a href="/services">Services</a></li>
-    </ul>
-<td>
-    <ul class="right hide-on-med-and-down" style="margin-right: 10px"
-    th:switch="${#authentication} ? ${#authorization.expression('isAuthenticated()')} : false">
-      <span th:case="${false}">
-        <form action="/login" method="post" >
-          <button class="waves-effect waves-light btn-small" type="submit">Login</button>
-        </form>
-      </span>
-      <span th:case="${true}">
-        <li>
-        <form th:action="@{/logout}" method="post" >
+    <ul id="nav-mobile" class="right hide-on-med-and-down" style="margin-right: 10px">
+      <li><a href="/services" sec:authorize="isAuthenticated()">Services</a></li>
+      <li><a href="/user" sec:authorize="hasAnyAuthority('ADMIN')">Users</a></li>
+      <li>
+        <form th:action="@{/logout}" method="post" sec:authorize="isAuthenticated()">
           <button class="waves-effect waves-light btn-small" type="submit">Logout</button>
         </form>
       </li>
-      </span>
     </ul>
-</td>
+    <ul class="right hide-on-med-and-down" style="margin-right: 10px" sec:authorize="isAnonymous()">
+      <form action="/login" method="post">
+        <button class="waves-effect waves-light btn-small" type="submit">Login</button>
+      </form>
+    </ul>
   </div>
 </nav>
 
