@@ -1,11 +1,9 @@
 package com.example.bekolittms.controller;
 
-import com.example.bekolittms.converter.UserLoginToUserEntityConverter;
 import com.example.bekolittms.entity.RoleEntity;
 import com.example.bekolittms.entity.UserEntity;
 import com.example.bekolittms.repository.UserRepository;
 import com.example.bekolittms.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -37,7 +35,6 @@ public class RegistrationController {
             return "reg";
         }
         user.setRoles(Collections.singleton(RoleEntity.USER));
-//        userRepository.save(user);
         userService.save(user);
         return "redirect:/login";
     }
