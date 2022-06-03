@@ -4,14 +4,14 @@ import com.example.bekolittms.entity.RoleEntity;
 import com.example.bekolittms.entity.UserEntity;
 import com.example.bekolittms.model.UserEdit;
 import com.example.bekolittms.repository.UserRepository;
-import java.util.Optional;
-import javax.validation.Valid;
-
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/user")
@@ -58,6 +58,16 @@ public class UserController {
             userRepository.save(userEntity);
         }
 
+        return "redirect:/user";
+    }
+
+    @PostMapping("/delete")
+    public String userDelete(@ModelAttribute ("userEdit") UserEdit userEdit ){
+        Optional<UserEntity> optionalUserEntity = userRepository.findById(userEdit.getId());
+        if (optionalUserEntity.isPresent()) {
+            UserEntity userEntity = optionalUserEntity.get();
+            userRepository.delete(userEntity);
+        }
         return "redirect:/user";
     }
 }
