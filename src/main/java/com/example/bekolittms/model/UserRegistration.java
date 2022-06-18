@@ -1,5 +1,6 @@
 package com.example.bekolittms.model;
 
+import com.example.bekolittms.entity.RoleEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -7,9 +8,11 @@ import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.stereotype.Component;
 
+import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
+import java.util.Set;
 
 @Data
 @NoArgsConstructor
@@ -17,6 +20,8 @@ import javax.validation.constraints.Pattern;
 @Builder
 @Component
 public class UserRegistration {
+
+    private long id;
 
     @NotNull
     @NotBlank
@@ -38,5 +43,7 @@ public class UserRegistration {
     @Pattern(regexp = "(?=^.{8,}$)((?=.*\\d)|(?=.*\\W+))(?![.\\n])(?=.*[A-Z])(?=.*[a-z]).*$",
     message = "пароль должен состоять только из букв, цифр, длиною не более 10 символов")
     private String password;
+
+    private Set<RoleEntity> roles;
 
 }

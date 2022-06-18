@@ -17,6 +17,8 @@ import javax.validation.constraints.Size;
 @Component
 public class UserLogin {
 
+    private long id;
+
     @NotNull
     @Size (min = 3, max = 100)
     private String username;

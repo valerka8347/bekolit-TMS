@@ -15,17 +15,18 @@
   <div class="nav-wrapper">
     <a href="/" class="brand-logo" style="margin-left: 10px">TMS Logistics</a>
     <ul id="nav-mobile" class="right hide-on-med-and-down" style="margin-right: 10px">
-      <li><a href="/services" sec:authorize="isAuthenticated()">Services</a></li>
-      <li><a href="/user" sec:authorize="hasAnyAuthority('ADMIN')">Users</a></li>
+      <li><a href="/services" sec:authorize="isAuthenticated()">Услуги</a></li>
+      <li><a href="/calc-stavka" sec:authorize="isAuthenticated()">Запрос ставки</a></li>
+      <li><a href="/user" sec:authorize="hasAnyAuthority('ADMIN')">Пользователи</a></li>
       <li>
         <form th:action="@{/logout}" method="post" sec:authorize="isAuthenticated()">
-          <button class="waves-effect waves-light btn-small" type="submit">Logout</button>
+          <button class="waves-effect waves-light btn-small" type="submit">Выйти</button>
         </form>
       </li>
     </ul>
-    <ul class="right hide-on-med-and-down" style="margin-right: 10px" sec:authorize="isAnonymous()">
-      <form action="/login" method="post">
-        <button class="waves-effect waves-light btn-small" type="submit">Login</button>
+    <ul class="right hide-on-med-and-down" style="margin-right: 10px">
+      <form action="/login" method="post" sec:authorize="isAnonymous()">
+        <button class="waves-effect waves-light btn-small" type="submit">Войти</button>
       </form>
     </ul>
   </div>

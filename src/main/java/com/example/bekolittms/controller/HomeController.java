@@ -18,4 +18,9 @@ public class HomeController {
         model.addAttribute("title", "О нас");
         return "services";
     }
+    @GetMapping("/calc-stavka")
+    public String calcStavka(Model model){
+        model.addAttribute("title", "Заказ ставки");
+        return "stavka";
+    }
 }
